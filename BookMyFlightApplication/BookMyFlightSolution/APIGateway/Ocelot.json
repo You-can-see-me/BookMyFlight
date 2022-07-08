@@ -1,0 +1,83 @@
+{
+  "Routes": [
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/AirlineInventory/AddAirline",
+      "DownstreamScheme": "https",
+      "ServiceName": "adminService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/inventory/add",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/AdminLogin/Login",
+      "DownstreamScheme": "https",
+      "ServiceName": "adminService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/admin/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/FlightSearch/SearchFlight",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightSearchService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/search",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/UserLogin/Login",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/UserLogin/Register",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/FlightBooking/BookFlight/{flightId}",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/{flightId}",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/FlightBooking/GetTicketDetails/{pnr}",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/ticket/{pnr}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/FlightBooking/GetBookingHistory/{emailId}",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/history/{emailId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/FlightBooking/CancelFlight?pnr={pnr}",
+      "DownstreamScheme": "https",
+      "ServiceName": "flightUserService",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/cancel/{pnr}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500",
+      "Type": "Consul"
+    }
+  }
+}
