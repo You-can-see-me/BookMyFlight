@@ -34,5 +34,12 @@ namespace Admin.Service.Controllers
             }
             return Ok(token);
         }
+
+        [HttpGet]
+        [Route("Hello")]
+        public string Hello()
+        {
+            return "Hello";
+        }
     }
 }

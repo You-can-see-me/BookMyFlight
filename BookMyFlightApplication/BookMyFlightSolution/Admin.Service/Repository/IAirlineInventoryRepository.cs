@@ -1,5 +1,5 @@
 ﻿using Admin.Service.ViewModels;
-//using Shared.Models;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,6 @@ namespace Admin.Service.Repository
     public interface IAirlineInventoryRepository
     {
         public bool AddAirlineDetails(AirlinInventoryViewModel airlinInventoryDetails);
-        //public bool UpdateSeatDetails(Ticket ticketDetails);
+        public void UpdateSeatDetails(Ticket ticket);
     }
 }

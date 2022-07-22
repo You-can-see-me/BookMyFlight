@@ -1,7 +1,7 @@
 ﻿using FlightUser.Service.EntityModels;
 using FlightUser.Service.ViewModels;
 using MassTransit;
-//using Shared.Models;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +13,14 @@ namespace FlightUser.Service.Repository
     public class FlightBookingRepository : IFlightBookingRepository
     {
         BookMyFlightDBContext bookMyFlightDBContext;
-        //private readonly IBus bus;
-        public FlightBookingRepository(BookMyFlightDBContext _bookMyFlightDBContext)
+        private readonly IBus bus;
+        public FlightBookingRepository(BookMyFlightDBContext _bookMyFlightDBContext, IBus _bus)
         {
             bookMyFlightDBContext = _bookMyFlightDBContext;
-            //bus = _bus;
+            bus = _bus;
         }
 
-        public FlightBookingResponse BookFlight(FlightBookingRequest flightBookingRequest)
+        public async Task<FlightBookingResponse> BookFlight(FlightBookingRequest flightBookingRequest)
         {
             decimal ticketCost = bookMyFlightDBContext.FlightInventories.Where(x => x.Id == flightBookingRequest.InventoryId).FirstOrDefault().TicketCost;
             decimal discountPercent = 0;
@@ -71,14 +71,15 @@ namespace FlightUser.Service.Repository
                 bookMyFlightDBContext.PassengerDetails.Add(passengerDetail);
                 bookMyFlightDBContext.SaveChanges();
             }
-            //Ticket ticketRabbitMQ = new Ticket();
-            //ticketRabbitMQ.NoOfSeats = booking.NoOfSeats;
-            //ticketRabbitMQ.SeatType = booking.SeatType;
+            Ticket ticketRabbitMQ = new Ticket();
+            ticketRabbitMQ.FlightInventoryId = booking.InventoryId;
+            ticketRabbitMQ.NoOfSeats = booking.NoOfSeats;
+            ticketRabbitMQ.SeatType = booking.SeatType;
 
-            //Uri uri = new Uri("rabbitmq://localhost/ticketQueue");
-            //var endpoint = bus.GetSendEndpoint(uri);
-            //endpoint.Result.Send(ticketRabbitMQ);
-            
+            Uri uri = new Uri("rabbitmq://localhost/ticketQueue");
+            var endpoint = await bus.GetSendEndpoint(uri);
+            await endpoint.Send(ticketRabbitMQ);
+
 
 
             return flightBookingResponse;
@@ -168,7 +169,10 @@ namespace FlightUser.Service.Repository
                                       UserId = bh.UserId,
                                       SeatType = bh.SeatType,
                                       BookingStatus = bh.BookingStatus,
-                                      TicketCost = inv.TicketCost * bh.NoOfSeats
+                                      TicketCost = inv.TicketCost * bh.NoOfSeats,
+                                      Source = inv.Departure,
+                                      Destination = inv.Destination,
+                                      AirlineName = inv.AirlineName
 
                                   }).FirstOrDefault();
 

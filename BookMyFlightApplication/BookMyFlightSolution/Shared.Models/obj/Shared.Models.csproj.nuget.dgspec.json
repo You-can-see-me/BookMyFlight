@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj": {}
+    "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj": {
+    "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj",
+        "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj",
         "projectName": "Shared.Models",
-        "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj",
+        "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj",
         "packagesPath": "C:\\Users\\cogdotnet928\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\obj\\",
+        "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

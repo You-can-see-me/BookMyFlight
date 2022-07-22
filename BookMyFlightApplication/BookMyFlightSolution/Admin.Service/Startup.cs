@@ -1,6 +1,8 @@
+using Admin.Service.Consumer;
 using Admin.Service.EntityModels;
 using Admin.Service.Repository;
 using Common;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,11 +34,17 @@ namespace Admin.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddDbContext<BookMyFlightDBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("BookMyFlightDBConnection")));
             services.AddConsulConfig(Configuration);
+            //services.AddScoped<TicketConsumer>();
+            services.AddScoped<IAirlineInventoryRepository, AirlineInventoryRepository>();
+
             services.AddTransient<IJWTMangerRepository, JWTMangerRepository>();
+
+            
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,7 +64,21 @@ namespace Admin.Service
                 };
             });
 
-            services.AddScoped<IAirlineInventoryRepository, AirlineInventoryRepository>();
+            services.AddMassTransit(x =>
+            {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.UseHealthCheck(provider);
+                    config.Host(new Uri("rabbitmq://localhost/"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +91,10 @@ namespace Admin.Service
 
             app.UseConsul(Configuration);
             app.UseHttpsRedirection();
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI();

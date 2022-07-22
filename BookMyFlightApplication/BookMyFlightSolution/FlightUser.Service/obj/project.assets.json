@@ -2443,6 +2443,32 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Admin.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Common": "1.0.0",
+          "MassTransit": "7.0.3",
+          "MassTransit.AspNetCore": "7.0.3",
+          "MassTransit.RabbitMQ": "7.0.3",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.26",
+          "Microsoft.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Shared.Models": "1.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.3.1"
+        },
+        "compile": {
+          "bin/placeholder/Admin.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Admin.Service.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -2459,6 +2485,16 @@
         },
         "runtime": {
           "bin/placeholder/Common.dll": {}
+        }
+      },
+      "Shared.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Shared.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.Models.dll": {}
         }
       }
     }
@@ -8253,14 +8289,25 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Admin.Service/1.0.0": {
+      "type": "project",
+      "path": "../Admin.Service/Admin.Service.csproj",
+      "msbuildProject": "../Admin.Service/Admin.Service.csproj"
+    },
     "Common/1.0.0": {
       "type": "project",
       "path": "../Common/Common.csproj",
       "msbuildProject": "../Common/Common.csproj"
+    },
+    "Shared.Models/1.0.0": {
+      "type": "project",
+      "path": "../Shared.Models/Shared.Models.csproj",
+      "msbuildProject": "../Shared.Models/Shared.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Admin.Service >= 1.0.0",
       "Common >= 1.0.0",
       "MassTransit >= 7.0.3",
       "MassTransit.AspNetCore >= 7.0.3",
@@ -8269,6 +8316,7 @@
       "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
+      "Shared.Models >= 1.0.0",
       "Swashbuckle.AspNetCore.Swagger >= 6.3.1",
       "Swashbuckle.AspNetCore.SwaggerGen >= 6.3.1",
       "Swashbuckle.AspNetCore.SwaggerUI >= 6.3.1"
@@ -8282,11 +8330,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\FlightUser.Service.csproj",
+      "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\FlightUser.Service.csproj",
       "projectName": "FlightUser.Service",
-      "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\FlightUser.Service.csproj",
+      "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\FlightUser.Service.csproj",
       "packagesPath": "C:\\Users\\cogdotnet928\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\obj\\",
+      "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightUser.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -8309,8 +8357,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj"
+            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Admin.Service\\Admin.Service.csproj": {
+              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Admin.Service\\Admin.Service.csproj"
+            },
+            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj"
+            },
+            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj": {
+              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Shared.Models\\Shared.Models.csproj"
             }
           }
         }

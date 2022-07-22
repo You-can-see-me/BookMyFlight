@@ -20,6 +20,9 @@ namespace FlightUser.Service.ViewModels
         public string SeatType { get; set; }
         public string BookingStatus { get; set; }
         public decimal TicketCost { get; set; }
+        public string Source { get; set; }
+        public string Destination { get; set; }
+        public string AirlineName { get; set; }
         public List<PassengerDetailList> passengerDetailList { get; set; }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Admin.Service.EntityModels;
 using Admin.Service.ViewModels;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,25 @@ namespace Admin.Service.Repository
             {
                 return false;
             }
+        }
+
+        public void UpdateSeatDetails(Ticket ticket)
+        {
+            if (bookMyFlightDBContext.FlightInventories.Any(x => x.Id == ticket.FlightInventoryId))
+            {
+                FlightInventory flightInventory = bookMyFlightDBContext.FlightInventories.Where(x => x.Id == ticket.FlightInventoryId).FirstOrDefault();
+                if(ticket.SeatType == "Business")
+                {
+                    flightInventory.NoOfBusinessClassSeats = flightInventory.NoOfBusinessClassSeats - ticket.NoOfSeats;
+                }
+                else if(ticket.SeatType == "Non-Business")
+                {
+                    flightInventory.NoOfNonBusinessClassSeats = flightInventory.NoOfNonBusinessClassSeats - ticket.NoOfSeats;
+                }
+                bookMyFlightDBContext.Update(flightInventory);
+                bookMyFlightDBContext.SaveChanges();
+            }
+
         }
     }
 }

@@ -46,6 +46,10 @@ namespace FlightSearch.Service
 
             app.UseConsul(Configuration);
             app.UseHttpsRedirection();
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI();

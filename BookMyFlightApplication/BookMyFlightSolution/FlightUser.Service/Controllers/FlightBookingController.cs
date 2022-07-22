@@ -23,10 +23,10 @@ namespace FlightUser.Service.Controllers
         }
         [HttpPost]
         [Route("BookFlight/{flightId}")]
-        public FlightBookingResponse BookFlight(int flightId,FlightBookingRequest flightBookingRequest)
+        public async Task<FlightBookingResponse> BookFlight(int flightId,FlightBookingRequest flightBookingRequest)
         {
 
-            var result = flightBookingRepository.BookFlight(flightBookingRequest);
+            var result = await flightBookingRepository.BookFlight(flightBookingRequest);
             return result;
 
         }

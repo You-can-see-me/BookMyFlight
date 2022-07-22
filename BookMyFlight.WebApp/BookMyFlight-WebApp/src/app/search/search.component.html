@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col">
+    <div class="card border-0">
+      <div class="card-body" style="background-image: url(../../assets/background.jpg);">
+        <h2>Search Flight</h2>
+        <form [formGroup]="searchRequest.formSearchGroup">
+          <div class="row" style="padding: 1rem 1rem 1rem 1rem; display: flex;">
+            <!-- <div class="headers-wrapper" style="padding: 1rem 1rem 1rem 1rem; display: flex;">
+                            <button (click)="oneWayClick()" id="one-way" class="IsRoundTrip ? '' : 'active'" style="border-radius: 16px; padding: 2px 16px; margin-right: 1em;">One-Way</button>
+                            <button (click)="roundTripClick()" id="round-trip" class="IsRoundTrip ? 'active' : ''" style="border-radius: 16px; padding: 2px 16px;">Round Trip</button>
+                        </div> -->
+            <div class="col" style="width: 35%;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio" (click)="toggleRoundTrip(false)">One-Way
+              </label>
+            </div>
+            <div class="col" style="width: 35%;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio" (click)="toggleRoundTrip(true)">Round-Trip
+              </label>
+            </div>
+            <div class="col" style="width: 35%;">
+
+            </div>
+          </div>
+
+          <div class="row" style="padding: 1rem 1rem 1rem 1rem; display: flex;">
+            <div class="col" style="width: 35%;">
+              <label class="form-label">From</label>
+              <select class="form-control" [(ngModel)]="searchRequest.fromCity" id="fromCity"
+                formControlName="FromCityControl" name="fromCity" required>
+                <option value="" [disabled]="true" selected>Enter Origin City</option>
+                <option value="BLR">Bangalore</option>
+                <option value="MAA">Chennai</option>
+                <option value="DEL">Delhi</option>
+                <option value="HYD">Hyderabad</option>
+                <option value="MUM">Mumbai</option>
+
+              </select>
+              <p style="color:red"
+                [hidden]="searchRequest.formSearchGroup.untouched || !(hasError('required','FromCityControl'))">Please
+                enter Origin City</p>
+
+            </div>
+            <div class="col" style="width: 35%;">
+              <label class="form-label">To</label>
+              <select class="form-control" [(ngModel)]="searchRequest.toCity" formControlName="ToCityControl"
+                id="toCity" name="toCity" required>
+                <option value="" [disabled]="true" selected>Enter Destination City</option>
+                <option value="BLR">Bangalore</option>
+                <option value="MAA">Chennai</option>
+                <option value="DEL">Delhi</option>
+                <option value="HYD">Hyderabad</option>
+                <option value="MUM">Mumbai</option>
+              </select>
+              <p style="color:red"
+                [hidden]="searchRequest.formSearchGroup.untouched || !(hasError('required','ToCityControl'))">Please
+                enter Destination City</p>
+
+            </div>
+            <div class="col" style="width: 30%;">
+              <!-- <label class="form-label">Departure Date</label>
+                            <input class="form-control" type="date" style="width: 55%;" /> -->
+            </div>
+          </div>
+          <div class="row" style="padding: 1rem 1rem 1rem 1rem; display: flex;">
+            <div class="col-5">
+              <label class="form-label">Departure Date</label>
+              <input class="form-control" min="{{today}}" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="searchRequest.departureDate" type="datetime-local" style="width: 50%;" />
+            </div>
+            <div class="col-5" *ngIf="IsRoundTrip">
+              <label class="form-label">Return Date</label>
+              <input class="form-control" min="{{today}}" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="searchRequest.returnDate" type="datetime-local" style="width: 50%;" />
+            </div>
+            <div class="col-5">
+            </div>
+          </div>
+          <div class="py-4" style="padding: 1rem 1rem 1rem 1rem; display: flex;">
+            <input type="submit" class="btn btn-primary" value="Search" (click)="onSearchClick()"
+              [disabled]="!(searchRequest.formSearchGroup.valid)" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="isNoResultFound">
+      <h1 style="text-align: center;">No Flights found</h1>
+    </div>
+    <div class="card-border-0" *ngIf="searchResponse.length>0">
+      <div class="card-body">
+        <div class="container">
+          <h2>Flight Search Result</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Flight Date</th>
+                <th>Airline</th>
+                <th>Flight No.</th>
+                <th>Ticket Price</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th [hidden]="true">InventoryId</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let resp of searchResponse">
+                <td>{{resp.flightDateTime | date:'medium'}}</td>
+                <td>{{resp.airlineName}}</td>
+                <td>{{resp.flightNumber}}</td>
+                <td>{{resp.ticketCost}}</td>
+                <td>{{resp.departure}}</td>
+                <td>{{resp.destination}}</td>
+                <td [hidden]="true">{{resp.flightInventoryId}}</td>
+                <td><input type="submit" class="btn btn-warning" value="Book" (click)="onBookClick(resp)" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="showSpinner" class="loader" role="status">
+        <span class="visually-hidden">Loading</span>
+      </div>
+
+
+      <!-- Button trigger modal -->
+      <button id="btnLaunchModal" type="button" style="visibility: hidden;" class="btn btn-primary"
+        data-bs-toggle="modal" data-bs-target="#exampleModal">
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{modalHeader}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{modalText}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row g-3 py-4" style="background-image: url(../../assets/new_background.jpg);">
+  <h2 style="text-align: center;">Manage Bookings</h2>
+  <div></div>
+
+  <div *ngIf="isNoResultFound">
+    <h1 style="text-align: center;">No Bookings found</h1>
+  </div>
+
+  <div class="py-4" *ngIf="bookingHistoryResponse.length > 0" style="padding-right: 5em;">
+    <table class="table caption-top table-light table-striped table-hover">
+      <thead>
+        <tr>
+          <th>PNR</th>
+          <th>BookingId</th>
+          <th>AirlineName</th>
+          <th>TicketCost</th>
+          <th>DateOfJourney</th>
+          <th>BookingStatus</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookingHistoryResponse">
+          <td>{{booking.pnr}}</td>
+          <td>{{booking.bookingId}}</td>
+          <td>{{booking.airlineName}}</td>
+          <td>{{booking.ticketCost}}</td>
+          <td>{{booking.dateOfJourney | date : 'medium'}}</td>
+          <td>{{booking.bookingStatus}}</td>
+          <td>
+            <div class="py-4">
+              <span><input type="button" class="btn btn-info" value="View"
+                  (click)="viewTicket(booking.pnr)" /></span>
+              <span style="padding-left: 4px;"><input type="button" class="btn btn-danger" value="Cancel"
+                  *ngIf="booking.bookingStatus!='Canceled' && IsCancelAllowed(booking)"
+                  (click)="cancelTicket(booking.pnr)" /></span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="showSpinner" class="loader" role="status">
+    <span class="visually-hidden">Loading</span>
+  </div>
+
+
+  <!-- Button trigger modal -->
+  <button id="btnLaunchModal" type="button" style="visibility: hidden;" class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{modalHeader}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label [innerText]="modalText"></label>  
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7700,11 +7700,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\FlightSearch.Service.csproj",
+      "projectUniqueName": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\FlightSearch.Service.csproj",
       "projectName": "FlightSearch.Service",
-      "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\FlightSearch.Service.csproj",
+      "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\FlightSearch.Service.csproj",
       "packagesPath": "C:\\Users\\cogdotnet928\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\obj\\",
+      "outputPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\FlightSearch.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7727,8 +7727,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj"
+            "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\cogdotnet928\\Desktop\\Repo\\IIHT Project\\BookMyFlightApplication\\BookMyFlightSolution\\Common\\Common.csproj"
             }
           }
         }

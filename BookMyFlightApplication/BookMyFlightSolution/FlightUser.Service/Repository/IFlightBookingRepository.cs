@@ -8,7 +8,7 @@ namespace FlightUser.Service.Repository
 {
     public interface IFlightBookingRepository
     {
-        public FlightBookingResponse BookFlight(FlightBookingRequest flightBookingRequest);
+        public Task<FlightBookingResponse> BookFlight(FlightBookingRequest flightBookingRequest);
         public string CancelFlight(string pnr);
         public GetTicketDetailsModel GetTicketDetails(string pnr);
         public List<GetBookingHistoryModel> GetBookingHistory(string emailId);

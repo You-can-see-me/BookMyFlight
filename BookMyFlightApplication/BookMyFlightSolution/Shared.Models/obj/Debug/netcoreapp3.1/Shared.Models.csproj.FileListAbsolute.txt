@@ -8,3 +8,13 @@ C:\Users\cogdotnet928\Desktop\Repo\BookMyFlightApplication\BookMyFlightSolution\
 C:\Users\cogdotnet928\Desktop\Repo\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.csproj.CoreCompileInputs.cache
 C:\Users\cogdotnet928\Desktop\Repo\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.dll
 C:\Users\cogdotnet928\Desktop\Repo\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.deps.json
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.csproj.AssemblyReference.cache
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.AssemblyInfoInputs.cache
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.AssemblyInfo.cs
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.csproj.CoreCompileInputs.cache
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\cogdotnet928\Desktop\Repo\IIHT Project\BookMyFlightApplication\BookMyFlightSolution\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.pdb

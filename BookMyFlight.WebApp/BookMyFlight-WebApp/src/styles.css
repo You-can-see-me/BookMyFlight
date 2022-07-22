@@ -1,0 +1,24 @@
+.masthead {
+    height: fit-content;
+    min-height: fit-content;
+    background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.loader{
+  position: fixed;
+  left: 47%;
+  top: 50%;
+  width: 10%;
+  height: 15%;
+  z-index: 9999;
+  background: url('./assets/Fidget-spinner.gif') 50% 50% no-repeat rgb(249,249,249);
+}

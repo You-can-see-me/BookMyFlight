@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Admin.Service.Consumer;
 
 namespace FlightUser.Service
 {
@@ -33,30 +34,15 @@ namespace FlightUser.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMassTransit(x => {
-            //    x.AddConsumer<Admin.Service.Controllers>();
-            //    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
-            //    {
-            //        config.UseHealthCheck(provider);
-            //        config.Host(new Uri("rabbitmq://localhost/"), h =>
-            //        {
-            //            h.Username("guest");
-            //            h.Password("guest");
-            //        });
-            //        config.ReceiveEndpoint("ticketQueue", ep => {
-            //            //ep.PrefetchCount = 16;
-            //            //ep.UseMessageRetry(r => r.Interval(2, 100));
-            //            ep.ConfigureConsumer<TicketConsumer.Microservice.Consumers.TicketConsumer>(provider);
-            //        });
-            //    }));
-            //});
-            //services.AddMassTransitHostedService();
+            
             services.AddControllers();
+            
             services.AddScoped<IFlightBookingRepository, FlightBookingRepository>();
             services.AddSwaggerGen();
             services.AddDbContext<BookMyFlightDBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("BookMyFlightDBConnection")));
             services.AddConsulConfig(Configuration);
             services.AddTransient<IJWTMangerRepository, JWTMangerRepository>();
+            
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,6 +61,25 @@ namespace FlightUser.Service
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<TicketConsumer>();
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.UseHealthCheck(provider);
+                    config.Host(new Uri("rabbitmq://localhost/"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                    config.ReceiveEndpoint("ticketQueue", ep =>
+                    {
+                        ep.ConfigureConsumer<TicketConsumer>(provider);
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +92,10 @@ namespace FlightUser.Service
 
             app.UseConsul(Configuration);
             app.UseHttpsRedirection();
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI();
